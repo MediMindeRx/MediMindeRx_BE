@@ -72,6 +72,141 @@ Follow the steps below to get this database up and running on your local environ
 
 * Intialize database after first time
 
+
+## Fetch Documentation
+
+* Action: Create User
+  * Verb: 
+    * POST
+  * URL: 
+    * baseUrl/api/users
+  * Required Body: 
+    * `{ "name": "User's Name" }`
+  * Response: 
+    * `{
+        "status": "success",
+        "data": {
+            "name": "User's Name",
+            "id": 1
+        }
+      }`
+  * Additional Details:
+    * none
+
+* Action: Login User
+  * Verb: 
+    * GET
+  * URL: 
+    * baseUrl/api/users/:userId
+  * Required Body: 
+    * none
+  * Response: 
+    * `{
+        "status": "success",
+        "data": {
+            "name": "User's Name",
+            "id": 1
+        }
+      }`
+  * Additional Details:
+    * not ready, this login shouldn't use id, should use name or email
+
+* Action: Create Message
+  * Verb: 
+    * POST
+  * URL: 
+    * baseUrl/api/messages
+  * Required Body: 
+    * `{
+        "user_id": 1,
+        "name": "Band Practice",
+        "supplies": "inhaler, epipen",
+        "days": "Monday, Tuesday",
+        "time": "10:30",
+        "show_supplies": false,
+        "full_date": 123243244
+      }`
+  * Response: 
+    * `{
+        "status": "success",
+        "data": {
+            "user_id": 1,
+            "full_date": 123243244,
+            "show_supplies": false,
+            "time": "10:30",
+            "days": "Monday, Tuesday",
+            "supplies": "inhaler, epipen",
+            "creation_date": "2020-10-25T15:12:59.342829",
+            "name": "Band Practice",
+            "id": 1
+        }
+      }`
+  * Additional Details:
+    * This is subject to change as more reminder options are set
+
+* Action: Get All Of A User's Messages
+  * Verb: 
+    * GET
+  * URL: 
+    * baseUrl/api/users/:userId/reminders
+  * Required Body: 
+    * None
+  * Response: 
+    * `{
+        "status": "success",
+        "data": [
+          {
+          "supplies": "inhaler, epipen",
+          "name": "Band Practice",
+          "full_date": 123243244,
+          "time": "10:30",
+          "creation_date": "2020-10-25T19:41:14.687676",
+          "show_supplies": false,
+          "id": 1,
+          "days": "Monday, Tuesday",
+          "user_id": 1
+          },
+          {
+          "supplies": "inhaler, epipen",
+          "name": "Band Practice",
+          "full_date": 123243244,
+          "time": "10:30",
+          "creation_date": "2020-10-25T19:41:21.074001",
+          "show_supplies": false,
+          "id": 2,
+          "days": "Monday, Tuesday",
+          "user_id": 1
+          }
+        ]
+      }`
+  * Additional Details:
+    * This is subject to change as more details are added
+
+* Action: Change Message
+  * Verb: 
+    * PUT
+  * URL: 
+    * baseUrl/api/messages/:messageId
+  * Required Body: 
+    * {id: 1}
+  * Response: 
+    * 200
+  * Additional Details:
+    * none
+
+* Action: Delete Message
+  * Verb: 
+    * DELETE
+  * URL: 
+    * baseUrl/api/messages/:messageId
+  * Required Body: 
+    * {id: 1}
+  * Response: 
+    * 200
+  * Additional Details:
+    * none
+
+
 ## Tech Stack 
 - PostgreSQL
 - Postico
